@@ -13,45 +13,6 @@ provider "azurerm" {
   features {}
 }
 
-resource "azurerm_resource_group" "mtc-rg" {
-  name     = "mtc-resources"
-  location = "West Europe"
-  tags = {
-    environment = "dev"
-  }
-}
-
-resource "azurerm_virtual_machine" "mtc-vm" {
-  name                  = "${var.prefix}-vm"
-  location              = azurerm_resource_group.mtc-rg.location
-  resource_group_name   = azurerm_resource_group.mtc-rg.name
-  network_interface_ids = [azurerm_network_interface.main.id]
-  vm_size               = "Standard_DS1_v2"
-
- storage_image_reference {
-    publisher = "Canonical"
-    offer     = "0001-com-ubuntu-server-focal"
-    sku       = "20_04-lts"
-    version   = "latest"
-  }
-  storage_os_disk {
-    name              = "myosdisk1"
-    caching           = "ReadWrite"
-    create_option     = "FromImage"
-    managed_disk_type = "Standard_LRS"
-  }
-  os_profile {
-    computer_name  = "hostname"
-    admin_username = "testadmin"
-    admin_password = "Password1234!"
-  }
-  os_profile_linux_config {
-    disable_password_authentication = false
-  }
-  tags = {
-    environment = "dev"
-  }
-}
 
 resource "azurerm_virtual_network" "mtc-vn" {
   name                = "mtc-network"
@@ -64,7 +25,7 @@ resource "azurerm_virtual_network" "mtc-vn" {
   }
 
 }
-/*
+
 resource "azurerm_subnet" "mtc-subnet" {
   name                 = "mtc-subnet"
   resource_group_name  = azurerm_resource_group.mtc-rg.name
@@ -111,5 +72,3 @@ resource "azurerm_public_ip" "mtc-ip" {
     environment = "dev"
   }
 }
-
-*/
