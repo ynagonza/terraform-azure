@@ -1,5 +1,11 @@
 terraform {
+cloud {
+    organization = "ACME-CORP-LTD"
 
+    workspaces {
+      name = "terracase"
+    }
+  }
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
