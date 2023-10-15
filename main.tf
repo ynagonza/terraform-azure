@@ -1,15 +1,5 @@
 terraform {
 
-cloud {
-    organization = "ACME-CORP-LTD"
-
-    workspaces {
-      name = "terraWORKSPACE"
-    }
-  }
-
-}
-
 required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
@@ -17,6 +7,14 @@ required_providers {
     }
   }
 }
+
+cloud {
+    organization = "ACME-CORP-LTD"
+
+    workspaces {
+      name = "terraWORKSPACE"
+    }
+  }
 
 # Configure the Microsoft Azure Provider
 provider "azurerm" {
