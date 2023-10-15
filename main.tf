@@ -40,6 +40,13 @@ resource "azurerm_subnet" "mtc-subnet" {
   address_prefixes     = ["10.123.1.0/24"]
 }
 
+resource "azurerm_subnet" "mtc-subnet-BY-USER-B" {
+  name                 = "mtc-subnet-BY-USER-B"
+  resource_group_name  = azurerm_resource_group.mtc-rg.name
+  virtual_network_name = azurerm_virtual_network.mtc-vn.name
+  address_prefixes     = ["10.146.1.0/24"]
+}
+
 resource "azurerm_network_security_group" "mtc-sg" {
   name                = "mtc-sg"
   location            = azurerm_resource_group.mtc-rg.location
