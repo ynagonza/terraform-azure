@@ -77,6 +77,7 @@ resource "azurerm_subnet_network_security_group_association" "mtc-sga" {
   network_security_group_id = azurerm_network_security_group.mtc-sg.id
 }
 
+/*
 
 resource "azurerm_public_ip" "mtc-ip" {
   name                = "mtc-ip"
@@ -88,3 +89,5 @@ resource "azurerm_public_ip" "mtc-ip" {
     environment = "dev"
   }
 }
+
+*/
