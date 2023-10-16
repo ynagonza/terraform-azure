@@ -56,7 +56,7 @@ resource "azurerm_network_security_rule" "mtc-dev-rule" {
   access                      = "Allow"
   protocol                    = "*"
   source_port_range           = "*"
-  destination_port_range      = "*"
+  destination_port_range      = "443"
   source_address_prefix       = "*"
   destination_address_prefix  = "*"
   resource_group_name         = azurerm_resource_group.mtc-rg.name
@@ -67,6 +67,18 @@ resource "azurerm_subnet_network_security_group_association" "mtc-sga" {
 
   subnet_id                 = azurerm_subnet.mtc-subnet.id
   network_security_group_id = azurerm_network_security_group.mtc-sg.id
+}
+
+
+resource "azurerm_public_ip" "mtc-ip" {
+  name                = "mtc-ip"
+  resource_group_name = azurerm_resource_group.mtc-rg.name
+  location            = azurerm_resource_group.mtc-rg.location
+  allocation_method   = "Dynamic"
+
+  tags = {
+    environment = "dev"
+  }
 }
 
 
